@@ -70,6 +70,28 @@ shift([Head | Tail], Result) :-
     append(Tail, [Head], Result).
 
 
+% Base case: Move the top disk from source to target.
+move(1, Source, Target, _) :-
+    write('Move top disk from '),nl,
+    write(Source),nl,
+    write(' to '),nl,
+    write(Target),
+    nl.
+
+% Recursive case: Move N disks from source to target using auxiliary.
+move(N, Source, Target, Auxiliary) :-
+    N > 1,
+    M is N - 1,nl,
+    move(M, Source, Auxiliary, Target),nl,
+    move(1, Source, Target, _),nl,
+    move(M, Auxiliary, Target, Source).
+
+
+
+
+
+
+
 
 
 
