@@ -10,4 +10,3 @@ toh(N,X,Y,Z):-
 			   toh(1,X,Y,_),nl,
 			   toh(M,Z,Y,X),nl.
 			   
-			  

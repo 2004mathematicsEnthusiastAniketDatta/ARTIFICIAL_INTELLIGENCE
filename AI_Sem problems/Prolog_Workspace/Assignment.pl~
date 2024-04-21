@@ -1,0 +1,74 @@
+%linear search
+search(X,[X|_]).
+search(X,[_|T]):-search(X,T).
+
+%length of list
+list_length([],0).
+list_length([_|T],L):-list_length(T,L1),L is L1+1.
+
+%Concatenate two list
+list_concatenate([],L2,L2).
+list_concatenate([Y|L1],L2,[Y|L3]):- list_concatenate(L1,L2,L3).
+
+%delete element given
+del(X,[X],[]).
+del(X,[X|T],T).
+del(X,[H|T],[H|T1]):-del(X,T,T1).
+
+
+% Base case: Inserting an element at position 1 results in a new list.
+insert_at(Element, List, 1, [Element | List]).
+
+% Recursive case: Insert the element at the specified position.
+insert_at(Element, [Head | Tail], Position, Result):-
+    Position > 1,
+    NewPosition is Position - 1,
+    insert_at(Element, Tail, NewPosition, TempResult),
+    Result = [Head | TempResult].
+
+%prolog program to check whether a list is sorted in increasing order.
+is_sorted([]).
+is_sorted([_]).
+is_sorted([X,Y|T]):-X=<Y,is_sorted([Y|T]).
+
+%sum of elements in a list
+sum_List([X],X).
+sum_List([H|T],Sum):-sum_List(T,Res),Sum is Res+H.
+
+%odd number length of list
+
+% Base case: An empty list has length 0 (which is even).
+length_even_odd([], even) :- write('The list has an even length (0).').
+
+% Recursive case: The length is odd if the tail has an even length.
+length_even_odd([_|Tail], odd) :-
+    length_even_odd(Tail, even),
+    length(Tail, TailLength),
+    Length is 1 + TailLength,
+    write('The list has an odd length ('),
+    write(Length),
+    write(').').
+
+% Recursive case: The length is even if the tail has an odd length.
+length_even_odd([_|Tail], even) :-
+    length_even_odd(Tail, odd),
+    length(Tail, TailLength),
+    Length is 1 + TailLength,
+    write('The list has an even length ('),
+    write(Length),
+    write(').').
+
+reverse(X,X).
+reverse([H|T],[X|H]):-
+    reverse(T,X).
+
+
+
+
+
+
+
+
+
+
+
