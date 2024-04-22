@@ -86,12 +86,90 @@ move(N, Source, Target, Auxiliary) :-
     move(1, Source, Target, _),nl,
     move(M, Auxiliary, Target, Source).
 
+
+
 %Depth First Search
-%facts
+
 graph(a,b).
 graph(a,c).
 graph(b,d).
-graph(b,e)
+graph(b,e).
+graph(c,f).
+graph(c,g).
+
+%defining facts for goals
+
+goal(f).
+goal(g).
+
+
+%membership status
+
+member(X,[X|_]).
+member(X,[_|T]):-member(X,T).
+
+% predicate to call from console % solution is a path(in reverse order) from start to a goal.
+
+solve(Node,Solution):- dfs([],Node,Solution).
+
+%predicate implementation
+dfs(Node,).
+dfs(Path,Node,Sol):-
+    graph(Node,Node1),
+    not(member(Node1,Path)),
+    dfs([Node|Path],Node1,Sol).
+
+
+%Bradth first Search:
+
+%Facts
+graphstruct(a,b).
+graphstruct(a,c).
+graphstruct(b,d).
+graphstruct(b,e).
+graphstruct(c,f).
+graphstruct(c,g).
+
+%defining facts for goals
+goals(f).
+goals(g).
+
+%predicate to call from console
+%Solution is a path(in reverse order)
+%from Start to a goal
+solve1(Start,Solution):-
+    bfs([[Start]],Solution).
+
+%bfs predicate implementation
+%Always first check if Goal is reached.
+
+bfs([Path|Paths],Solution):-
+    extend(Path,NewPaths),conc(Paths,NewPaths,Paths1),bfs(Paths1,Solution).
+
+
+
+
+
+
+extend([Node|Path],NewPaths):-
+    bagof([NewNode,Node|Path],(graph(Node,NewNode),not(member(NewNode,[Node|Path]))),NewPaths),!.
+extend(_,[]).
+
+conc([],L2,L2).
+conc([X|L1],L2,[X|L3]):-conc(L1,L2,L3).
+
+
+/*
+% Base case: Goal node reached.
+dfs1(Node, Node, [Node]).
+
+% Recursive case: Explore neighbors.
+dfs1(Current, Goal, [Current | Path]) :-
+    graph(Current, Neighbor),
+    not(member(Neighbor, Path)),
+    dfs(Neighbor, Goal, Path). */
+
+
 
 
 
