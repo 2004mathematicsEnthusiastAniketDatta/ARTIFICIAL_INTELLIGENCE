@@ -88,6 +88,38 @@ move(N, Source, Target, Auxiliary) :-
 
 
 
+%Depth First Search
+
+graph(a,b).
+graph(a,c).
+graph(b,d).
+graph(b,e).
+graph(c,f).
+graph(c,g).
+
+%defining facts for goals
+
+goal(f).
+goal(g).
+
+
+%membership status
+
+member(X,[X|_]).
+member(X,[_|T]):-member(X,T).
+
+% predicate to call from console % solution is a path(in reverse order) from start to a goal.
+
+solve(Node,Solution):- dfs([],Node,Solution).
+
+%predicate implementation
+
+dfs(Path,Node,Sol):-
+    graph(Node,Node1),
+    not(member(Node1,Path)),
+    dfs([Node|Path],Node1,Sol).
+
+
 
 
 
