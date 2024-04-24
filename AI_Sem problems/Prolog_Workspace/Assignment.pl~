@@ -120,6 +120,45 @@ dfs(Path,Node,Sol):-
     dfs([Node|Path],Node1,Sol).
 
 
+%Bradth first Search:
+
+%Facts
+graphstruct(a,b).
+graphstruct(a,c).
+graphstruct(b,d).
+graphstruct(b,e).
+graphstruct(c,f).
+graphstruct(c,g).
+
+%defining facts for goals
+goals(f).
+goals(g).
+
+%predicate to call from console
+%Solution is a path(in reverse order)
+%from Start to a goal
+solve1(Start,Solution):-
+    bfs([[Start]],Solution).
+
+%bfs predicate implementation
+%Always first check if Goal is reached.
+
+bfs([Path|Paths],Solution):-
+    extend(Path,NewPaths),conc(Paths,NewPaths,Paths1),bfs(Paths1,Solution).
+
+
+
+
+
+
+extend([Node|Path],NewPaths):-
+    bagof([NewNode,Node|Path],(graph(Node,NewNode),not(member(NewNode,[Node|Path]))),NewPaths),!.
+extend(_,[]).
+
+conc([],L2,L2).
+conc([X|L1],L2,[X|L3]):-conc(L1,L2,L3).
+
+
 
 
 
