@@ -1,7 +1,7 @@
 graph={}
 
 def user_input():
-    n = int(input("Enter the number of nodes:"))
+    n = int(input("Enter the number of internal parent nodes with root node:"))
     for _ in range(n):
         key = input("Enter the node").upper()
         elem = input("Enter the nodes connected to the node").split(",")
