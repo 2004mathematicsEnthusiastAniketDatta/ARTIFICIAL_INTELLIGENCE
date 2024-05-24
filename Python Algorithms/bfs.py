@@ -1,7 +1,9 @@
-graph = {}
+#Breadth First Search
+
+graph = {} #graph to store the input graph
 
 def user_input():
-    n = int(input("Enter the number of internal parent nodes with root node: "))
+    n = int(input("Enter the number of internal parent nodes with root node(except the leaf nodes): "))
     for _ in range(n):
         key = input("Enter the node: ").upper()
         elem = input("Enter the nodes connected to the node (comma-separated): ").split(",")
