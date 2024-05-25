@@ -18,10 +18,10 @@ f(Node1, Node2, EstimatedCost) :-
 
 % Define the A* search algorithm.
 astar(Start, Goal, Path) :-
-    astar(Start, Goal, [Start], 0, Path, Path).
+    astar(Start, Goal, [Start], 0, Path).
 
-astar(Goal, Goal, Path, _, Path, _).
-astar(Current, Goal, Visited, CurrentCost, Path, _) :-
+astar(Goal, Goal, Path, _, Path).
+astar(Current, Goal, Visited, CurrentCost, Path) :-
     findall(
         (Next, NewCost, EstimatedCost, [Next|Visited]),
         (
@@ -35,7 +35,7 @@ astar(Current, Goal, Visited, CurrentCost, Path, _) :-
     ),
     keysort(Neighbors, SortedNeighbors),
     member((Next, NewCost, _, NewVisited), SortedNeighbors),
-    astar(Next, Goal, NewVisited, NewCost, Path, _).
+    astar(Next, Goal, NewVisited, NewCost, Path).
 
 % Example predicates
 % Define goal/1 to specify the goal node
@@ -55,21 +55,3 @@ distance(c, goal_node, 1).
 % Usage example
 % ?- astar(a, goal_node, Path).
 % Path = [goal_node, c, a].
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
