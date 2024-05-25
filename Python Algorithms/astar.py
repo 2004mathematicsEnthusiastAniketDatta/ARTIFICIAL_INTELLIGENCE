@@ -7,18 +7,18 @@ def h(node):
 
 # Define the cost function g
 def g(node1, node2):
-    # This is typically the actual cost of the edge from Node1 to Node2
+    # This is typically the actual cost of the edge from node1 to node2
     return graph[node1][node2]
 
 # Define the A* search algorithm
 def astar(start, goal):
     queue = []
-    heapq.heappush(queue, (0, start))
+    heapq.heappush(queue, (0 + h(start), start))
     costs = {start: 0}
     path = {start: [start]}
 
     while queue:
-        (cost, current) = heapq.heappop(queue)
+        (priority, current) = heapq.heappop(queue)
         if current == goal:
             return path[current]
 
