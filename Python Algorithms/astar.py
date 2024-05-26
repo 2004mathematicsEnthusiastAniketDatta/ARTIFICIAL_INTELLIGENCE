@@ -48,4 +48,4 @@ distance = {
 }
 
 # Usage example
-print(astar('a', 'goal_node'))  # Output: ['a', 'b', 'c', 'goal_node']
+print(astar('a', 'goal_node'))  # Output: ['a', 'c', 'goal_node']
