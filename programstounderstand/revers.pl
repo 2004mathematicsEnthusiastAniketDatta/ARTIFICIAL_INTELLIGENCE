@@ -1,0 +1,28 @@
+reverse([],[]).
+reverse([H|T],R):-
+    reverse(T,RT),
+    append(RT,[H],R).
+% Base case: An empty list has even length 0
+length_even_odd([], even) :-
+    write('The list has even length Zero'), nl.
+
+% Recursive case: If the head is removed and the tail has even length, the list has odd length
+length_even_odd([_|T], odd) :-
+    length_even_odd(T, even),
+    length([_|T], Length),
+    write('The length of the list is '),
+    write(Length),
+    write(' and the list is odd'), nl.
+
+% Recursive case: If the head is removed and the tail has odd length, the list has even length
+length_even_odd([_|T], even) :-
+    length_even_odd(T, odd),
+    length([_|T], Length),
+    write('The length of the list is '),
+    write(Length),
+    write(' and has even length'), nl.
+
+
+
+
+
