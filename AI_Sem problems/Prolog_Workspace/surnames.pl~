@@ -1,0 +1,18 @@
+% Facts
+person(john, smith, 45, london, doctor).
+person(martin, williams, 33, bermingham, teacher).
+person(henry_smith, 26, manchester, plumber).
+person(jane, wilson, 62, london, teacher).
+person(mary, smith, 29, glassglow, surveyor).
+
+% Rule to find persons with 'Smith' as surname
+surname_smith(Name, Surname):-
+    person(Name, Surname, _, _, _),
+    Surname = smith.
+
+% Query to find all persons with 'Smith' as surname
+find_smiths :-
+    surname_smith(Name, Surname),
+    write(Name), write(' '), writeln(Surname),
+    fail.
+find_smiths.
